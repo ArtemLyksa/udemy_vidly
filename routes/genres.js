@@ -48,20 +48,20 @@ router.post('/', async (req, res) => {
         return res.status(400).send(error.details[0].message);
     }
 
-    let genre = new Genre({ name: req.body.name });
-    genre = await genre.save();
+    const genre = new Genre({ name: req.body.name });
+    await genre.save();
 
     res.send(genre);
 });
 
 router.delete('/:id', async (req, res) => {
-    
+
     try {
         const genre = await Genre.findByIdAndRemove(req.params.id);
         if (!genre) {
             return res.status(404).send(`The genre with given id = ${req.params.id} not found`);
         }
-    
+
         res.send(genre);
     }
     catch (error) {
