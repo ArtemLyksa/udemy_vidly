@@ -3,8 +3,6 @@ const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('config');
 
 router.post('/', async (req, res) => {
 
@@ -19,7 +17,7 @@ router.post('/', async (req, res) => {
 
     try {
         await user.save();
-        const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey'));
+        const token = user.generateAuthToken();
         res.header('x-auth-token', token);
         res.send(_.pick(user, ['_id', 'name', 'email']));
     }
