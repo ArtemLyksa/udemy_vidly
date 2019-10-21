@@ -20,6 +20,17 @@ winston.add(new winston.transports.MongoDB({
     level: 'error'
 }));
 
+winston.exceptions.handle(
+    new winston.transports.File({ filename: 'uncaughtExceptions.log' })
+);
+
+process.on('unhandledRejection', (err) => {
+    throw(err);
+});
+
+const p = Promise.reject( new Error('unhandled rejection'));
+p.then(() => console.log('Done'));
+
 if (!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined.');
     process.exit(1);
