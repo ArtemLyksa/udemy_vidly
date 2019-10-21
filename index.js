@@ -1,6 +1,7 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const express = require('express');
+require('express-async-errors');
 const mongoose = require('mongoose');
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
