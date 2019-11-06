@@ -4,17 +4,16 @@ const request = require('supertest');
 let server;
 
 describe('auth middleware', () => {
-    beforeEach(() => { server = require('../../index'); });
+    beforeEach(() => { 
+        token = new User().generateAuthToken();
+        server = require('../../index'); 
+    });
     afterEach(async () => { 
+        server.close();
         await Genre.remove({});
-        server.close(); 
     });
 
     let token;
-
-    beforeEach(() => {
-        token = new User().generateAuthToken();
-    });
 
     const execute = function () {
         return request(server)

@@ -7,8 +7,8 @@ let server;
 describe('/api/genres', () => {
     beforeEach(() => { server = require('../../index'); });
     afterEach(async () => {
-        server.close();
         await Genre.remove({});
+        server.close();
     });
 
     describe('GET /', () => {
@@ -52,8 +52,8 @@ describe('/api/genres', () => {
             name = 'genre1';
         });
 
-        const execute = async function () {
-            return await request(server)
+        const execute = function () {
+            return request(server)
                 .post('/api/genres')
                 .set('x-auth-token', token)
                 .send({ name });
