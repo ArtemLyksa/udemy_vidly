@@ -7,32 +7,33 @@ let server;
 describe('/api/genres', () => {
     beforeEach(() => { server = require('../../index'); });
     afterEach(async () => {
-        await Genre.remove({});
-        server.close();
+        await Genre.deleteMany({});
+        await server.close();
     });
 
     describe('GET /', () => {
         it('should return all genres', async () => {
-            await Genre.collection.insertMany([
-                { name: 'genre1' },
-                { name: 'genre2' }
+            await Genre.insertMany([
+                { name: 'genre4' },
+                { name: 'genre5' }
             ]);
-
             const response = await request(server).get('/api/genres');
             expect(response.status).toBe(200);
             expect(response.body.length).toBe(2);
-            expect(response.body.some(genre => genre.name === 'genre1')).toBeTruthy();
-            expect(response.body.some(genre => genre.name === 'genre2')).toBeTruthy();
+            expect(response.body.some(genre => genre.name === 'genre4')).toBeTruthy();
+            expect(response.body.some(genre => genre.name === 'genre5')).toBeTruthy();
         });
     });
 
     describe('GET /:id', () => {
         it('should return genre with given id', async () => {
-            const result = await Genre.collection.insertOne({ name: 'genre1' });
-            const id = result.insertedId.toHexString();
-            const response = await request(server).get(`/api/genres/${id}`);
+            const _id = new mongoose.Types.ObjectId().toHexString();
+            const model = new Genre({ _id: _id, name: 'genre2' });
+            await model.save()
+
+            const response = await request(server).get(`/api/genres/${_id}`);
             expect(response.status).toBe(200);
-            expect(response.body._id).toBe(id);
+            expect(response.body._id).toBe(_id);
         });
 
         it('should return 404 if genre with given id not found', async () => {
