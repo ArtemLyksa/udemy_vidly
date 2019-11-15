@@ -1741,3 +1741,13 @@
 {"message":"Connnected to mongodb://localhost/vidly...","level":"info"}
 {"message":"Listening on port 3000","level":"info"}
 {"message":"Connnected to mongodb://localhost/vidly...","level":"info"}
+{"message":"Listening on port 3000","level":"info"}
+{"message":"Connnected to mongodb://localhost/vidly...","level":"info"}
+{"message":"Listening on port 3000","level":"info"}
+{"message":"Connnected to mongodb://localhost/vidly...","level":"info"}
+{"message":"Listening on port 3000","level":"info"}
+{"message":"Listening on port 3000","level":"info"}
+{"message":"Connnected to mongodb+srv://vidlyuser:1234@vidly-iwdec.mongodb.net/test?retryWrites=true...","level":"info"}
+{"message":"Listening on port 3000","level":"info"}
+{"message":"Listening on port 3000","level":"info"}
+{"message":"Connnected to mongodb+srv://vidlyuser:1234@vidly-iwdec.mongodb.net/test?retryWrites=true...","level":"info"}
