@@ -6,7 +6,7 @@ require('express-async-errors');
 module.exports = function () {
     const db = config.get('db');
     winston.add(new winston.transports.File({ filename: 'logfile.log' }));
-    winston.add(new winston.transports.MongoDB({ db: db, level: 'error' }));
+    // winston.add(new winston.transports.MongoDB({ db: db, level: 'error' }));
     
 
     winston.exceptions.handle(
